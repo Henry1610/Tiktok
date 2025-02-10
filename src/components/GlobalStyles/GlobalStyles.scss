@@ -5,12 +5,13 @@
   /* Bạn có thể đặt các biến global ở đây nếu cần */
   --default-layout-header-height:60px;
   --default-layout-width:1150px;
-
+  --black:#000;
+  --text-color:#333;
+  --white:#fff;
+  --primary:#FE2C55;
 }
 
-// html {
-//   /* Đặt các thuộc tính global cho html */
-// }  
+ 
 *{
   margin:0;
   padding: 0;
@@ -19,6 +20,13 @@
 body {
   font-family: 'IBM Plex Sans', sans-serif;
 }
-
-/* Định nghĩa các class font-style */
+button,input[tabindex]{
+  border: none;
+  outline: none;
+}
+a[href]
+{
+  color:var(--text-color);
+  text-decoration: none;
+}
  

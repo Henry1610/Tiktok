@@ -1,0 +1,77 @@
+.wrapper {
+    display: inline-flex;
+    align-items: center; /* Căn giữa icon và chữ */
+
+    font-size: 1rem;
+    font-weight: 700;
+    min-width: 80px;
+    padding: 9px 16px;
+    border-radius: 4px;
+    background-color: var(--white);
+    cursor: pointer;
+    border: 1px solid transparent;
+
+    +.wrapper{
+        margin-left: 8px;
+    }
+    &.disable{
+        pointer-events: none;
+        opacity: 0.5;
+    }
+}
+.primary {
+    color: var(--white);
+    background-color: var(--primary);
+
+    &:hover {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+    }
+}
+.outline{
+    color:var(--primary) ;
+    border-color: var(--primary);
+    &:hover{
+        background-color: rga(254,44,85,0.06);
+    }
+}
+// Button types
+.rounded {
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    padding: 10px 20px; // Thêm padding để dễ nhìn hơn
+    transition: all 0.3s ease-in-out; // Thêm hiệu ứng chuyển động khi hover
+
+    &:hover {
+        border-color: rgba(22, 24, 35, 0.2);
+        background-color: rgba(22, 24, 35, 0.03);
+        box-shadow: 0 4px 12px rgb(0 0 0 / 12%); // Tăng hiệu ứng nổi khi hover
+    }
+}
+
+.text{
+    &:hover{
+        text-decoration: underline;
+    }
+}   
+//Button size
+.small{
+    min-width: 88px;
+    padding: 4px 16px;
+
+}
+.large{
+    min-width: 148px;
+    padding: 14px 16px;
+}
+.icon+.title
+,.title+.icon{
+    margin-right: 6px;
+}
+.icon{
+    width: 24px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 8px;
+    
+}
