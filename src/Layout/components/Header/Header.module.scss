@@ -11,6 +11,7 @@
 .inner {
     height: 100%;
     width: var(--default-layout-width);
+    padding: var(--default-layout-horizontal-spacer);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -83,11 +84,31 @@
     }
     
 }
+//Actions
+.action{
+    display: flex;
+    align-items: center;
+}
 .more-btn{
     font-size: 1.3rem;
     margin-left: 28px;
     background-color: transparent;
     padding: 4px 8px;
+    cursor: pointer;
+}
+.action-btn{
+    color: #161823;
+    background-color: transparent;
+    font-size: 1.3rem;
+    padding: 4px 10px;
+}
+.user-avatar{
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-left: 11px;
+    cursor: pointer;
 }
 .search-result{
     width: 361px;

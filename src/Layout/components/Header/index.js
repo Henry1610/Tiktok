@@ -3,27 +3,46 @@ import classNames from 'classnames/bind';
 import images from '@/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Wrapper as PopperWrapper } from 'components/Popper';
-import { faCircleQuestion, faCircleXmark, faEarthAsia, faEllipsisVertical, faKeyboard, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCircleQuestion, faCircleXmark, faCloudUpload, faCoins, faEarthAsia, faEllipsisVertical, faGear, faKeyboard, faMagnifyingGlass, faMessage, faSignOut, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import TippyHeadless from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import { useEffect, useState } from 'react';
 import AccountItem from 'components/AccountItem/AccountItem';
 import Button from '@/components/Button';
 import Menu from 'components/Popper/Menu';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { MessageIcon, SearchIcon, UploadIcon } from 'components/Icons';
+import Image from 'components/Image';
 const cx = classNames.bind(styles);
-const MENU_ITEMS=[
+const MENU_ITEMS = [
     {
-        icon:<FontAwesomeIcon className={cx('abc')} icon={faEarthAsia} /> ,
-        title:'English'
+        icon: <FontAwesomeIcon className={cx('abc')} icon={faEarthAsia} />,
+        title: 'English',
+        children: {
+            title: 'Languge'
+            , data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tieng Viet'
+                }
+            ]
+        }
     },
     {
-        icon:<FontAwesomeIcon className={cx('abc')} icon={faCircleQuestion}/> ,
-        title:'Feedback ',
-        to:"/feedback"
+        icon: <FontAwesomeIcon className={cx('abc')} icon={faCircleQuestion} />,
+        title: 'Feedback ',
+        to: "/feedback"
     },
     {
-        icon:<FontAwesomeIcon className={cx('abc')} icon={faKeyboard}/> ,
-        title:'Keyboard shortcuts'
+        icon: <FontAwesomeIcon className={cx('abc')} icon={faKeyboard} />,
+        title: 'Keyboard shortcuts'
     },
 ]
 function Header() {
@@ -33,6 +52,35 @@ function Header() {
             setSearchResult([1, 2])
         }, 0)
     })
+
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon className={cx('abc')} icon={faUser} />,
+            title: 'View profile ',
+            to: "/feedback"
+        },
+        {
+            icon: <FontAwesomeIcon className={cx('abc')} icon={faCoins} />,
+            title: 'Get coin ',
+            to: "/coin"
+        },
+        {
+            icon: <FontAwesomeIcon className={cx('abc')} icon={faGear} />,
+            title: 'Settings ',
+            to: "/settings"
+        }, ...MENU_ITEMS
+        , {
+            icon: <FontAwesomeIcon className={cx('abc')} icon={faSignOut} />,
+            title: 'Log out ',
+            to: "/logout"
+            , separate: true
+        }
+    ]
+    const handleMenuChange = (menuItem) => {
+        console.log(menuItem);
+
+    }
+    const currentUser = true;
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -44,7 +92,7 @@ function Header() {
                 {/* Search */}
                 <Tippy
                     interactive
-                    visible={searchResult.length > 0}
+                    visible={searchResult.length < 0}
                     render={(attrs) =>
                     (<div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
@@ -70,20 +118,51 @@ function Header() {
                         <FontAwesomeIcon icon={faSpinner} className={cx('loading')} />
 
                         <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} className={cx('')} />
+                            <SearchIcon />
                         </button>
                     </div>
                 </Tippy>
 
-                {/* Actions */}
-                <div className={cx('action')}>
-                    <Button text>Register</Button>
-                    <Button primary>Log in</Button>
 
-                    <Menu items={MENU_ITEMS}>
-                        <button className={cx('more-btn')}><FontAwesomeIcon icon={faEllipsisVertical} className={cx('aa')}></FontAwesomeIcon></button>
+
+                <div className={cx('action')}>
+                    {currentUser ?
+                        (<>
+                            <Tippy content='Upload video' placement='bottom'>
+                                <button className={cx('action-btn')}>
+                                    <UploadIcon />
+                                </button>
+                            </Tippy>
+
+                            <button className={cx('action-btn')}>
+                                <MessageIcon/>
+                            </button>
+                        </>) :
+                        (<>
+                            <Button text>Register</Button>
+                            <Button primary>Log in</Button>
+
+
+                        </>)}
+                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                        {currentUser ? (
+                            <div>
+                                <Image 
+                                className={cx('user-avatar')} 
+                                alt='Nguyen Van A' 
+                                src="https://yt3.ggpht.com/a0_cx-_0C__vVw6xb3lP64_Z_vQL55wjZEjayJNX-MKaAgLgneYorFrligf5QAycRYiqBN3hOA=s68-c-k-c0x00ffffff-no-rj" />
+                            </div>)
+                            :
+                            (<button className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} className={cx('aa')} />
+                            </button>
+                            )}
                     </Menu>
                 </div>
+
+
+
+
             </div>
         </header>
     );

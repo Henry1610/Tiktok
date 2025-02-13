@@ -5,8 +5,10 @@
   /* Bạn có thể đặt các biến global ở đây nếu cần */
   --default-layout-header-height:60px;
   --default-layout-width:1150px;
+  --default-layout-horizontal-spacer:24px;
+
   --black:#000;
-  --text-color:#333;
+  --text-color:#161823;
   --white:#fff;
   --primary:#FE2C55;
 }
@@ -29,4 +31,23 @@ a[href]
   color:var(--text-color);
   text-decoration: none;
 }
- 
+//custom tooltip
+body{
+  .tippy-box{
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 2rem;
+    background-color: rgba(84,84,84,0.92);
+  }
+  .tippy-arrow{
+    color:rgba(84,84,84,0.92);
+   
+  }
+  .tippy-content{
+    padding: 4px 9px
+  }
+  .tippy-box{
+    top:-8px
+  }
+} 
