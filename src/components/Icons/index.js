@@ -15,7 +15,7 @@ export const UploadIcon = ({ width = '2.3rem', height = '2.3rem', className }) =
     </svg>
 );
 
-export const MessageIcon = ({ width = '2rem', height = '2rem', className }) => (
+export const MessageIcon = ({ width = '1.8rem', height = '1.8rem', className }) => (
     <svg
         className={className}
         width={width}

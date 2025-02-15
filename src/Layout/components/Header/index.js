@@ -2,18 +2,15 @@ import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import images from '@/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Wrapper as PopperWrapper } from 'components/Popper';
-import { faCircleQuestion, faCircleXmark, faCloudUpload, faCoins, faEarthAsia, faEllipsisVertical, faGear, faKeyboard, faMagnifyingGlass, faMessage, faSignOut, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import TippyHeadless from '@tippyjs/react/headless';
+import { faCircleQuestion, faCoins, faEarthAsia, faEllipsisVertical, faGear, faKeyboard,  faSignOut } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
-import { useEffect, useState } from 'react';
-import AccountItem from 'components/AccountItem/AccountItem';
 import Button from '@/components/Button';
 import Menu from 'components/Popper/Menu';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { MessageIcon, SearchIcon, UploadIcon } from 'components/Icons';
+import { InboxIcon, MessageIcon, UploadIcon } from 'components/Icons';
 import Image from 'components/Image';
+import Search from '../Search';
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
@@ -46,12 +43,7 @@ const MENU_ITEMS = [
     },
 ]
 function Header() {
-    const [searchResult, setSearchResult] = useState([])
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1, 2])
-        }, 0)
-    })
+    
 
     const userMenu = [
         {
@@ -89,39 +81,7 @@ function Header() {
                     <img src={images.logo} alt="TikTok" />
                 </div>
 
-                {/* Search */}
-                <Tippy
-                    interactive
-                    visible={searchResult.length < 0}
-                    render={(attrs) =>
-                    (<div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                        <PopperWrapper>
-                            <h4 className={cx('search-title')}>Accounts</h4>
-                            <AccountItem />
-                            <AccountItem />
-                            <AccountItem />
-                            <AccountItem />
-                        </PopperWrapper>
-                    </div>)
-
-                    }
-                >
-                    <div className={cx('search')}>
-                        <input
-                            placeholder="Search accounts and videos"
-                            spellCheck={false}
-                        />
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} className={cx('')} />
-                        </button>
-
-                        <FontAwesomeIcon icon={faSpinner} className={cx('loading')} />
-
-                        <button className={cx('search-btn')}>
-                            <SearchIcon />
-                        </button>
-                    </div>
-                </Tippy>
+                <Search/>
 
 
 
@@ -135,7 +95,11 @@ function Header() {
                             </Tippy>
 
                             <button className={cx('action-btn')}>
-                                <MessageIcon/>
+                                <MessageIcon />
+                            </button>
+                            <button className={cx('action-btn')}>
+                                <InboxIcon />
+                                <span className={cx('badge')}>12</span>
                             </button>
                         </>) :
                         (<>
@@ -147,10 +111,12 @@ function Header() {
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
                             <div>
-                                <Image 
-                                className={cx('user-avatar')} 
-                                alt='Nguyen Van A' 
-                                src="https://yt3.ggpht.com/a0_cx-_0C__vVw6xb3lP64_Z_vQL55wjZEjayJNX-MKaAgLgneYorFrligf5QAycRYiqBN3hOA=s68-c-k-c0x00ffffff-no-rj" />
+                                <Image
+                                    className={cx('user-avatar')}
+
+                                    fallback="https://yt3.ggpht.com/YwbGovLXEXu3Ji5me1LAYuhOPMl7Z2xgIRpxwRHMo39dIr41PaPBb31Yhkc_VAOd4s7OqVRA=s88-c-k-c0x00ffffff-no-rj"
+                                    alt='Nguyen Van A'
+                                    src="https://example.com/ảnh-không-tồn-tại.jpg" />
                             </div>)
                             :
                             (<button className={cx('more-btn')}>
