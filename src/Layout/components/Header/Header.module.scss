@@ -7,6 +7,11 @@
     --search-border-radius: 92px;
     --search-height: 46px;
     --search-top-spacer: 9px;
+    position: fixed;
+    top: 0;
+    left: 0z;
+    z-index: 10;
+    background-color: var(--white);
 }
 .inner {
     height: 100%;
