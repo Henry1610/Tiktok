@@ -1,8 +1,8 @@
-import Button from "@/components/Button";
 import styles from './Menu.module.scss'
 import classNames from "classnames/bind"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import propTypes from 'prop-types'
 
 const cx=classNames.bind(styles)
 
@@ -17,6 +17,11 @@ function Header({ title,onBack }) {
 
     </header>;
 
+}
+
+Header.propTypes={
+    onBack:propTypes.func.isRequired,
+    title:propTypes.string.isRequired
 }
 export default Header
 

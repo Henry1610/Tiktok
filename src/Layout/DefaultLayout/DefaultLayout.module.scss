@@ -9,6 +9,7 @@
     margin-top: var(--default-layout-header-height);
     min-height: 100px;
     display: flex;
+    max-width: 100%;
 }
 .content{
     flex: 1;
